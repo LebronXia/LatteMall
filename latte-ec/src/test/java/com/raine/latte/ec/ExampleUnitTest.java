@@ -1,4 +1,4 @@
-package com.riane.latte;
+package com.raine.latte.ec;
 
 import org.junit.Test;
 
