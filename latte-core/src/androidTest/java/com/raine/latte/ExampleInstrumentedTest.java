@@ -1,4 +1,4 @@
-package com.riane.latte.ec;
+package com.raine.latte;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.riane.latte.ec.test", appContext.getPackageName());
+        assertEquals("com.raine.latte.test", appContext.getPackageName());
     }
 }
