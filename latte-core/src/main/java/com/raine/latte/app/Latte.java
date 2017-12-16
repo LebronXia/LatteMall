@@ -12,11 +12,15 @@ public class Latte {
 
     //初始化配置
     public static Configurator init(Context context){
-        getConfiguration().put(ConfigKeys.APPLICATION_CONTEXT.name(), context.getApplicationContext());
+        getConfigurations().put(ConfigKeys.APPLICATION_CONTEXT.name(), context.getApplicationContext());
         return Configurator.getInstance();
     }
-
-    private static HashMap<Object, Object> getConfiguration(){
+    public static HashMap<Object, Object> getConfigurations(){
         return Configurator.getInstance().getLatteConfigs();
+    }
+
+
+    public static Context getApplicationContext(){
+        return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONTEXT.name());
     }
 }
