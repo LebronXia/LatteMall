@@ -1,7 +1,6 @@
 package com.riane.lattemall;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
 
@@ -23,7 +22,7 @@ public class ExampleDelegate extends LatteDelegate{
     }
 
     @Override
-    public void onBindView(@Nullable Bundle saveInstanceState, View rootView) {
+    public void onBindView(Bundle saveInstanceState, View rootView) {
 
         testRestClient();
     }
@@ -31,6 +30,7 @@ public class ExampleDelegate extends LatteDelegate{
     private void testRestClient(){
         RestClient.builder()
                 .url("http://news.baidu.com")
+                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
