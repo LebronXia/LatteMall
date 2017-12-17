@@ -6,6 +6,8 @@ import com.joanzapata.iconify.Iconify;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import okhttp3.Interceptor;
+
 /**
  * 管理配置的类，配置文件的存储和获取
  * Created by zhengxiaobo on 2017/12/12.
@@ -15,6 +17,8 @@ public final class Configurator {
     private static final HashMap<Object, Object> LATTE_CONFIGS = new HashMap<>();
     //存储图标的数组
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
+
 
     public Configurator() {
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
@@ -63,6 +67,18 @@ public final class Configurator {
         return this;
     }
 
+    public final Configurator withInterceptor(Interceptor interceptor){
+        INTERCEPTORS.add(interceptor);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    public Configurator withInterceptors(ArrayList<Interceptor> interceptors){
+        INTERCEPTORS.addAll(interceptors);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
     //核查配置有没有初始化
     private void checkConfiguration(){
         final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
@@ -72,8 +88,12 @@ public final class Configurator {
     }
 
     //得到相关的配置
-    final <T> T getConfiguration(Enum<ConfigKeys> key){
+    final <T> T getConfiguration(Object key){
         checkConfiguration();
-        return (T)LATTE_CONFIGS.get(key.name());
+        final Object value = LATTE_CONFIGS.get(key);
+        if (value == null){
+            throw new NullPointerException(key.toString() + "IS NULL");
+        }
+        return (T)LATTE_CONFIGS.get(key);
     }
 }
