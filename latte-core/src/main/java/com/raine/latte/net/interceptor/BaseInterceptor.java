@@ -1,4 +1,4 @@
-package com.raine.latte.interceptor;
+package com.raine.latte.net.interceptor;
 
 import java.util.LinkedHashMap;
 
@@ -6,7 +6,6 @@ import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
-import retrofit2.http.Streaming;
 
 /**
  * Created by Riane on 2017/12/18.

@@ -3,6 +3,9 @@ package com.raine.latte.net.callback;
 import android.content.Loader;
 import android.os.Handler;
 
+import com.raine.latte.app.ConfigKeys;
+import com.raine.latte.app.Latte;
+import com.raine.latte.net.RestCreator;
 import com.raine.latte.ui.LatteLoader;
 import com.raine.latte.ui.LoaderStyle;
 
@@ -46,14 +49,8 @@ public class RequestCallback implements Callback<String>{
             }
         }
 
-        if (LOADER_STYLE != null){
-            HANDLER.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    LatteLoader.stopLoading();
-                }
-            }, 1000);
-        }
+        onRequestFinish();
+
     }
 
     @Override
@@ -64,7 +61,21 @@ public class RequestCallback implements Callback<String>{
         if (REQUEST != null){
             REQUEST.onRequestEnd();
         }
-        LatteLoader.stopLoading();
+
+        onRequestFinish();
+    }
+
+    private void onRequestFinish(){
+        final long delayed = Latte.getConfiguration(ConfigKeys.LOADER_DELAYED);
+        if (LOADER_STYLE != null){
+            HANDLER.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    RestCreator.getParams().clear();
+                    LatteLoader.stopLoading();
+                }
+            }, delayed);
+        }
 
     }
 }

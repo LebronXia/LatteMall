@@ -29,12 +29,12 @@ public class ExampleDelegate extends LatteDelegate{
 
     private void testRestClient(){
         RestClient.builder()
-                .url("http://news.baidu.com")
+                .url("http://192.168.100.2/test")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();;
+                        Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();
                     }
                 })
                 .failure(new IFailure() {
