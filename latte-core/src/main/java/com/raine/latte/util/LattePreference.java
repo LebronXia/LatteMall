@@ -18,14 +18,14 @@ public class LattePreference {
     private static SharedPreferences getAppPreference(){
         return PREFERENCES;
     }
-    private static void setAppFlag(String key, boolean flag){
+    public static void setAppFlag(String key, boolean flag){
         getAppPreference()
                 .edit()
                 .putBoolean(key, flag)
                 .apply();
     }
 
-    private static boolean getAppFlag(String key){
+    public static boolean getAppFlag(String key){
         return getAppPreference()
                 .getBoolean(key, false);
     }

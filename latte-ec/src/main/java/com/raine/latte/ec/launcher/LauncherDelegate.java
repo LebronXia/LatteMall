@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.Scroller;
+
 import com.raine.latte.ec.R2;
 import com.raine.latte.delegates.LatteDelegate;
 import com.raine.latte.ec.R;
+import com.raine.latte.util.LattePreference;
 import com.raine.latte.util.timer.BaseTimerTask;
 import com.raine.latte.util.timer.ITimerListener;
 
@@ -14,6 +17,7 @@ import java.text.MessageFormat;
 import java.util.Timer;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by zhengxiaobo on 2017/12/18.
@@ -26,6 +30,15 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener{
 
     private Timer mTimer = null;
     private int mCount = 5;
+
+    @OnClick(R2.id.tv_launcher_timer)
+    void onClickTimeView(){
+        if (mTimer != null){
+            mTimer.cancel();
+            mTimer = null;
+            checkInShowScoll();
+        }
+    }
 
     @Override
     public Object setLayout() {
@@ -43,6 +56,14 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener{
         mTimer.schedule(task, 0, 1000);
     }
 
+    public void checkInShowScoll(){
+        if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
+            getSupportDelegate().start(new LauncherScrollDelegate(), SINGLETASK);
+        } else {
+            //检查用户是否登录
+        }
+    }
+
     @Override
     public void onTimer() {
         getProxyActivity().runOnUiThread(new Runnable() {
@@ -55,6 +76,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener{
                         if (mTimer != null){
                             mTimer.cancel();
                             mTimer = null;
+                            checkInShowScoll();
                         }
                     }
                 }
