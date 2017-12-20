@@ -11,6 +11,7 @@ import com.raine.latte.app.Latte;
 import com.raine.latte.delegates.LatteDelegate;
 import com.raine.latte.ec.launcher.LauncherDelegate;
 import com.raine.latte.ec.launcher.LauncherScrollDelegate;
+import com.raine.latte.ec.sign.SignUpDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
@@ -25,6 +26,6 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegare() {
-        return new LauncherDelegate();
+        return new SignUpDelegate();
     }
 }
