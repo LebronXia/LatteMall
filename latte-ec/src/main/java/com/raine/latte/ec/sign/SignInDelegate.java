@@ -12,6 +12,7 @@ import com.raine.latte.delegates.LatteDelegate;
 
 public class SignInDelegate extends LatteDelegate{
 
+    //@BindView
 
     @Override
     public Object setLayout() {
