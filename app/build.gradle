@@ -23,4 +23,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':latte-ec')
     annotationProcessor project(':latte-compiler')
+    compile 'org.jetbrains:annotations-java5:15.0'
 }

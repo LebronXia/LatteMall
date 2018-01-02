@@ -27,4 +27,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':latte-core')
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile 'com.jakewharton:butterknife-annotations:8.8.1'
 }

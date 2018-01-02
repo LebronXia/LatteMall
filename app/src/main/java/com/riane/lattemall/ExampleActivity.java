@@ -1,17 +1,14 @@
 package com.riane.lattemall;
 
-import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.raine.latte.activities.ProxyActivity;
 import com.raine.latte.app.Latte;
 import com.raine.latte.delegates.LatteDelegate;
-import com.raine.latte.ec.launcher.LauncherDelegate;
-import com.raine.latte.ec.launcher.LauncherScrollDelegate;
 import com.raine.latte.ec.sign.SignUpDelegate;
+
+import org.jetbrains.annotations.Nullable;
 
 public class ExampleActivity extends ProxyActivity {
 

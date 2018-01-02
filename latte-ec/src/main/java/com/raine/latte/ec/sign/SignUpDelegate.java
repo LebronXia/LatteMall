@@ -12,6 +12,9 @@ import android.widget.Toast;
 import com.raine.latte.delegates.LatteDelegate;
 import com.raine.latte.ec.R;
 import com.raine.latte.ec.R2;
+import com.raine.latte.log.LatteLogger;
+import com.raine.latte.net.RestClient;
+import com.raine.latte.net.callback.ISuccess;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,8 +48,28 @@ public class SignUpDelegate extends LatteDelegate{
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp(){
         if (checkForm()){
-            Toast.makeText(getContext(), "验证通过", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "验证通过", Toast.LENGTH_SHORT).show();
+            RestClient.builder()
+                    .url("http://127.0.0.1:8080/RestServer/api/user_profile.php")
+                    .params("name", mName.getText().toString())
+                    .params("email", mEmail.getText().toString())
+                    .params("phone", mPhone.getText().toString())
+                    .params("password", mPassword.getText().toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String reponse) {
+                            LatteLogger.json("USER_PROFILE", reponse);
+                        }
+                    })
+                    .build()
+                    .post();
+
         }
+    }
+
+    @OnClick(R2.id.tv_link_sign_in)
+    void onClickLink(){
+        getSupportDelegate().start(new SignInDelegate());
     }
 
     public boolean checkForm(){
