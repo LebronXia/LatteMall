@@ -50,7 +50,7 @@ public class SignUpDelegate extends LatteDelegate{
         if (checkForm()){
             //Toast.makeText(getContext(), "验证通过", Toast.LENGTH_SHORT).show();
             RestClient.builder()
-                    .url("http://127.0.0.1:8080/RestServer/api/user_profile.php")
+                    .url("http://192.168.0.109:8080/RestServer/api/user_profile.php")
                     .params("name", mName.getText().toString())
                     .params("email", mEmail.getText().toString())
                     .params("phone", mPhone.getText().toString())

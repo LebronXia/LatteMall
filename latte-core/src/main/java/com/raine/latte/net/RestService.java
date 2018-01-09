@@ -33,7 +33,7 @@ public interface RestService {
     //application/x-www-from-urlencoded,会将表单内的数据转换为键值对
     @FormUrlEncoded
     @POST
-    Call<String> post(@Url String url, @QueryMap WeakHashMap<String, Object> params);
+    Call<String> post(@Url String url, @FieldMap WeakHashMap<String, Object> params);
 
     @POST
     Call<String> postRaw(@Url String url, @Body RequestBody body);
